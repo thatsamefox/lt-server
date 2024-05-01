@@ -1,12 +1,15 @@
+version: "3"
 networks:
   caddy:
     external: true
 
+env_file:
+  - path: ./.env.local
+    required: true
+
 services:
   localtunnel:
     build: .
-    env_file:
-      - .env.local
     container_name: localtunnel
     labels:
       caddy: "t.localup.space"

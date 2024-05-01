@@ -62,11 +62,6 @@ export default function (opt) {
       return
     }
 
-    if (opt.token && opt.token !== ctx.headers.authorization) {
-      res.statusCode = 403
-      res.end(403)
-    }
-
     const isNewClientRequest = ctx.query["new"] !== undefined
     if (isNewClientRequest) {
       const reqId = hri.random()
@@ -106,11 +101,6 @@ export default function (opt) {
         message: msg
       }
       return
-    }
-
-    if (opt.token && opt.token !== ctx.headers.authorization) {
-      res.statusCode = 403
-      res.end(403)
     }
 
     debug("making new client with id %s", reqId)

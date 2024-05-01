@@ -64,6 +64,11 @@ export default function (opt) {
 
     const isNewClientRequest = ctx.query["new"] !== undefined
     if (isNewClientRequest) {
+      if (opt.token && ctx.headers.authorization !== opt.token) {
+        ctx.status = 403
+        return
+      }
+
       const reqId = hri.random()
       debug("making new client with id %s", reqId)
       const info = await manager.newClient(reqId)
@@ -100,6 +105,11 @@ export default function (opt) {
       ctx.body = {
         message: msg
       }
+      return
+    }
+
+    if (opt.token && ctx.headers.authorization !== opt.token) {
+      ctx.status = 403
       return
     }
 

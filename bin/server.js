@@ -1,12 +1,12 @@
-#!/usr/bin/env node -r esm
+#!/usr/bin/env node
 
-import "localenv"
+import 'dotenv/config'
 import optimist from "optimist"
 
 import log from "book"
 import Debug from "debug"
 
-import CreateServer from "../server"
+import CreateServer from "../server.js"
 
 const debug = Debug("localtunnel")
 

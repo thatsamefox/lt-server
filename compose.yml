@@ -4,10 +4,6 @@ networks:
   caddy:
     external: true
 
-env_file:
-  - path: ./.env.local
-    required: true
-
 services:
   localtunnel:
     build: .
@@ -18,4 +14,6 @@ services:
     restart: unless-stopped
     networks:
       - host
+    env_file:
+      - ./.env.local
     command: "--port 32400 --domain t.localup.space --token ${TOKEN}"

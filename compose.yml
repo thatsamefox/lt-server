@@ -1,0 +1,15 @@
+networks:
+  caddy:
+    external: true
+
+services:
+  localtunnel:
+    build: .
+    container_name: localtunnel
+    labels:
+      caddy: "t.localup.space"
+      caddy.reverse_proxy: host.docker.internal:32400
+    restart: unless-stopped
+    networks:
+      - host
+    command: "--port 32400 --domain t.localup.space --token ${TOKEN}"

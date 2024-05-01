@@ -12,6 +12,5 @@ services:
       caddy: "t.localup.space"
       caddy.reverse_proxy: host.docker.internal:32400
     restart: unless-stopped
-    networks:
-      - host
+    network_mode: host
     command: "--port 32400 --domain t.localup.space --token ${TOKEN}"

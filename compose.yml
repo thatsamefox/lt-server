@@ -5,6 +5,8 @@ networks:
 services:
   localtunnel:
     build: .
+    env_file:
+      - .env.local
     container_name: localtunnel
     labels:
       caddy: "t.localup.space"
